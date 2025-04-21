@@ -1,0 +1,751 @@
+:root {
+    --primary-color: #1a1a1a;
+    --accent-color: #e8e1d5;
+    --bg-color: #1a1a1a;
+    --paper-color: #e8e1d5;
+    --text-color: #2c1810;
+    --stain-color: rgba(139, 69, 19, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: cursive;
+    color: var(--text-color);
+    line-height: 1.6;
+    position: relative;
+    background: 
+        linear-gradient(to bottom,
+            rgba(20, 20, 25, 0.95),
+            rgba(30, 30, 35, 0.95)
+        ),
+        repeating-linear-gradient(
+            45deg,
+            rgba(0, 0, 0, 0.2) 0px,
+            rgba(0, 0, 0, 0.2) 1px,
+            transparent 1px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 50% 50%,
+            #2a2a30,
+            #1a1a1f
+        );
+    min-height: 100vh;
+}
+
+/* Add a subtle vignette effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at 50% 50%,
+        transparent 20%,
+        rgba(0, 0, 0, 0.4) 150%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Add subtle floating dust particles */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.25) 0%, transparent 2%),
+        radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.22) 0%, transparent 2%),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.23) 0%, transparent 2%),
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.24) 0%, transparent 2%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.21) 0%, transparent 2%),
+        radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.23) 0%, transparent 2%),
+        radial-gradient(circle at 60% 10%, rgba(255, 255, 255, 0.22) 0%, transparent 2%);
+    background-size: 
+        100px 100px,
+        120px 120px,
+        150px 150px,
+        200px 200px,
+        180px 180px,
+        160px 160px,
+        140px 140px;
+    animation: floatingDust 30s linear infinite;
+    pointer-events: none;
+    opacity: 0.9;
+    z-index: 2;
+    mix-blend-mode: soft-light;
+}
+
+@keyframes floatingDust {
+    0% {
+        background-position: 
+            0 0,
+            0 0,
+            0 0,
+            0 0,
+            0 0,
+            0 0,
+            0 0;
+    }
+    100% {
+        background-position: 
+            100px 100px,
+            -120px 120px,
+            150px -150px,
+            -200px 200px,
+            180px -180px,
+            -160px 160px,
+            140px -140px;
+    }
+}
+
+/* Add an additional layer of slower-moving particles */
+.container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 45% 45%, rgba(255, 255, 255, 0.3) 0%, transparent 3%),
+        radial-gradient(circle at 65% 35%, rgba(255, 255, 255, 0.25) 0%, transparent 3%),
+        radial-gradient(circle at 25% 75%, rgba(255, 255, 255, 0.28) 0%, transparent 3%);
+    background-size: 250px 250px, 300px 300px, 350px 350px;
+    animation: slowDust 45s linear infinite;
+    pointer-events: none;
+    opacity: 0.7;
+    z-index: 2;
+    mix-blend-mode: soft-light;
+}
+
+@keyframes slowDust {
+    0% {
+        background-position: 0 0, 0 0, 0 0;
+    }
+    100% {
+        background-position: 250px 250px, -300px 300px, 350px -350px;
+    }
+}
+
+/* Add a third layer of very prominent, sparse particles */
+.container::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.4) 0%, transparent 4%),
+        radial-gradient(circle at 75% 45%, rgba(255, 255, 255, 0.35) 0%, transparent 4%),
+        radial-gradient(circle at 55% 85%, rgba(255, 255, 255, 0.38) 0%, transparent 4%);
+    background-size: 400px 400px, 450px 450px, 500px 500px;
+    animation: verySlowDust 60s linear infinite;
+    pointer-events: none;
+    opacity: 0.6;
+    z-index: 2;
+    mix-blend-mode: soft-light;
+}
+
+@keyframes verySlowDust {
+    0% {
+        background-position: 0 0, 0 0, 0 0;
+    }
+    100% {
+        background-position: 400px 400px, -450px 450px, 500px -500px;
+    }
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 3;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+h1 {
+    font-size: 4.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: 'Special Elite', cursive;
+    letter-spacing: 2px;
+}
+
+.distressed {
+    font-family: 'Special Elite', cursive;
+    opacity: 0.9;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+section {
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.aged-paper, .aged-journal {
+    background-color: var(--paper-color);
+    padding: 2rem;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin: 2rem 0;
+}
+
+.journals-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.4em 1.1em 0.4em 1.1em;
+    background: repeating-linear-gradient(135deg, #ece7de, #ece7de 8px, #e2dbc9 8px, #e2dbc9 16px);
+    color: var(--primary-color);
+    font-family: 'Special Elite', 'IM Fell English', serif;
+    font-weight: 400;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.09), 0 1px 0 #d3ccc1;
+    border: 1.5px solid #b8b0a1;
+    letter-spacing: 0.5px;
+    text-shadow: 0.5px 0.5px 0 #fffbe6, 0 1px 2px rgba(0,0,0,0.04);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+    z-index: 5;
+}
+
+.journals-link:hover, .journals-link:focus {
+    background: var(--primary-color);
+    color: #e8e1d5;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    border-color: var(--accent-color);
+    text-shadow: none;
+}
+
+.aged-paper::before, .aged-journal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(var(--stain-color) 10%, transparent 30%),
+        radial-gradient(var(--stain-color) 15%, transparent 25%);
+    background-size: 150px 150px, 200px 200px;
+    background-position: 0 0, 100px 100px;
+    opacity: 0.5;
+}
+
+.aged-paper.dark {
+    background-color: #d3ccc1;
+}
+
+.stains::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, var(--stain-color) 0%, transparent 70%);
+    opacity: 0.6;
+}
+
+.coffee-stain::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(101, 67, 33, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: rotate(15deg);
+}
+
+.dust-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/png;base64,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');
+    opacity: 0.05;
+}
+
+.torn-edge::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    right: 0;
+    height: 15px;
+    background-image: linear-gradient(45deg, transparent 33.333%, var(--paper-color) 33.333%, var(--paper-color) 66.667%, transparent 66.667%), linear-gradient(-45deg, transparent 33.333%, var(--paper-color) 33.333%, var(--paper-color) 66.667%, transparent 66.667%);
+    background-size: 20px 40px;
+    background-position: 0 -20px;
+}
+
+.torn-edge.bottom::after {
+    bottom: auto;
+    top: -15px;
+    transform: rotate(180deg);
+}
+
+.fold-mark {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 30px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.corner-fold::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, transparent 50%, rgba(0, 0, 0, 0.05) 50%);
+}
+
+.book-highlights {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.book-highlights li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-color);
+}
+
+.book-highlights li::before {
+    content: "×";
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+    font-size: 1.2em;
+    opacity: 0.7;
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.contact {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    color: var(--accent-color);
+}
+footer p {
+    color: var(--accent-color);    
+}
+
+.book-intro .aged-paper {
+    transform: rotate(-2.5deg);
+}
+
+.book-details .aged-journal {
+    transform: rotate(1.8deg);
+}
+
+.author .aged-paper {
+    transform: rotate(-1.5deg);
+}
+
+.contact .aged-journal {
+    transform: rotate(2deg);
+}
+
+.aged-paper:hover, .aged-journal:hover {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Burnt and torn edges */
+.burnt-edges, .torn-edges {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.burnt-edge {
+    position: absolute;
+    background: linear-gradient(to var(--direction), 
+        rgba(0, 0, 0, 0.6),
+        rgba(139, 69, 19, 0.8),
+        rgba(165, 42, 42, 0.4),
+        transparent 80%);
+}
+
+.burnt-edge.top {
+    --direction: bottom;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    clip-path: polygon(
+        0% 0%, 5% 100%, 10% 20%, 15% 100%, 20% 40%, 25% 100%, 
+        30% 20%, 35% 100%, 40% 40%, 45% 100%, 50% 20%, 55% 100%,
+        60% 40%, 65% 100%, 70% 20%, 75% 100%, 80% 40%, 85% 100%,
+        90% 20%, 95% 100%, 100% 0%
+    );
+}
+
+.burnt-edge.bottom {
+    --direction: top;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    clip-path: polygon(
+        0% 100%, 5% 0%, 10% 80%, 15% 0%, 20% 60%, 25% 0%, 
+        30% 80%, 35% 0%, 40% 60%, 45% 0%, 50% 80%, 55% 0%,
+        60% 60%, 65% 0%, 70% 80%, 75% 0%, 80% 60%, 85% 0%,
+        90% 80%, 95% 0%, 100% 100%
+    );
+}
+
+.burnt-edge.left {
+    --direction: right;
+    top: 0;
+    left: -2px;
+    bottom: 0;
+    width: 12px;
+    clip-path: polygon(
+        0% 0%, 100% 5%, 20% 10%, 100% 15%, 40% 20%, 100% 25%,
+        20% 30%, 100% 35%, 40% 40%, 100% 45%, 20% 50%, 100% 55%,
+        40% 60%, 100% 65%, 20% 70%, 100% 75%, 40% 80%, 100% 85%,
+        20% 90%, 100% 95%, 0% 100%
+    );
+}
+
+.burnt-edge.right {
+    --direction: left;
+    top: 0;
+    right: -2px;
+    bottom: 0;
+    width: 12px;
+    clip-path: polygon(
+        100% 0%, 0% 5%, 80% 10%, 0% 15%, 60% 20%, 0% 25%,
+        80% 30%, 0% 35%, 60% 40%, 0% 45%, 80% 50%, 0% 55%,
+        60% 60%, 0% 65%, 80% 70%, 0% 75%, 60% 80%, 0% 85%,
+        80% 90%, 0% 95%, 100% 100%
+    );
+}
+
+.torn-edges {
+    z-index: 1;
+}
+
+.torn-edge {
+    position: absolute;
+    background-color: var(--bg-color);
+    opacity: 0.9;
+}
+
+.torn-edge.top {
+    top: -5px;
+    left: -2px;
+    right: -2px;
+    height: 8px;
+    clip-path: polygon(
+        0% 0%, 3% 100%, 7% 0%, 13% 100%, 17% 0%, 23% 100%,
+        27% 0%, 33% 100%, 37% 0%, 43% 100%, 47% 0%, 53% 100%,
+        57% 0%, 63% 100%, 67% 0%, 73% 100%, 77% 0%, 83% 100%,
+        87% 0%, 93% 100%, 100% 0%
+    );
+}
+
+.torn-edge.bottom {
+    bottom: -5px;
+    left: -2px;
+    right: -2px;
+    height: 8px;
+    clip-path: polygon(
+        0% 100%, 3% 0%, 7% 100%, 13% 0%, 17% 100%, 23% 0%,
+        27% 100%, 33% 0%, 37% 100%, 43% 0%, 47% 100%, 53% 0%,
+        57% 100%, 63% 0%, 67% 100%, 73% 0%, 77% 100%, 83% 0%,
+        87% 100%, 93% 0%, 100% 100%
+    );
+}
+
+.torn-edge.left {
+    top: -2px;
+    left: -5px;
+    bottom: -2px;
+    width: 8px;
+    clip-path: polygon(
+        0% 0%, 100% 3%, 0% 7%, 100% 13%, 0% 17%, 100% 23%,
+        0% 27%, 100% 33%, 0% 37%, 100% 43%, 0% 47%, 100% 53%,
+        0% 57%, 100% 63%, 0% 67%, 100% 73%, 0% 77%, 100% 83%,
+        0% 87%, 100% 93%, 0% 100%
+    );
+}
+
+.torn-edge.right {
+    top: -2px;
+    right: -5px;
+    bottom: -2px;
+    width: 8px;
+    clip-path: polygon(
+        100% 0%, 0% 3%, 100% 7%, 0% 13%, 100% 17%, 0% 23%,
+        100% 27%, 0% 33%, 100% 37%, 0% 43%, 100% 47%, 0% 53%,
+        100% 57%, 0% 63%, 100% 67%, 0% 73%, 100% 77%, 0% 83%,
+        100% 87%, 0% 93%, 100% 100%
+    );
+}
+
+/* Enhanced shadow effect for burnt look */
+.aged-paper::after, .aged-journal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 
+        inset 0 0 30px rgba(139, 69, 19, 0.3),
+        inset 0 0 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+/* Add burnt corner effect */
+.aged-paper::before, .aged-journal::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at top right,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(139, 69, 19, 0.4) 30%,
+        transparent 70%
+    );
+    transform: rotate(-5deg);
+    pointer-events: none;
+}
+
+#hook {
+    display: inline;
+    margin: 0;
+}
+
+.hook-image-container {
+    position: relative;
+    display: inline;
+    float: left;
+    margin: 20px 20px 10px 20px;
+}
+
+.hook-image {
+    width: 400px;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    filter: 
+        sepia(30%)
+        contrast(1.2)
+        brightness(0.9)
+        grayscale(20%);
+    transform: rotate(-2deg);
+    transition: all 0.3s ease;
+    position: relative;
+    display: block;
+}
+
+/* Tape effects */
+.hook-image-container::before,
+.hook-image-container::after,
+.hook-image::before,
+.hook-image::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 
+        0 2px 6px rgba(0,0,0,0.3),
+        inset 0 1px 2px rgba(255,255,255,0.3);
+    z-index: 1;
+    border-radius: 4px;
+}
+
+/* Top left tape */
+.hook-image::before {
+    top: -20px;
+    left: -20px;
+    transform: rotate(-45deg);
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+}
+
+/* Bottom right tape */
+.hook-image::after {
+    bottom: -20px;
+    right: -20px;
+    transform: rotate(135deg);
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+}
+
+/* Top right tape */
+.hook-image-container::before {
+    top: -20px;
+    right: -20px;
+    transform: rotate(45deg);
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+}
+
+/* Bottom left tape */
+.hook-image-container::after {
+    bottom: -20px;
+    left: -20px;
+    transform: rotate(-135deg);
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+}
+
+.hook-image:hover {
+    filter: 
+        sepia(20%)
+        contrast(1.3)
+        brightness(0.95)
+        grayscale(10%);
+}
+
+/* Ensure text flows around the image properly */
+#hook + p {
+    margin-top: 0;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 3rem;
+    }
+    
+    .aged-paper, .aged-journal {
+        padding: 1.5rem;
+    }
+    
+    .hook-image-container {
+        float: none;
+        display: block;
+        margin: 30px auto;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .hook-image {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    /* Adjust tape positions for smaller screens */
+    .hook-image::before {
+        width: 60px;
+        height: 30px;
+        top: -15px;
+        left: -15px;
+    }
+
+    .hook-image::after {
+        width: 60px;
+        height: 30px;
+        bottom: -15px;
+        right: -15px;
+    }
+
+    .hook-image-container::before {
+        width: 60px;
+        height: 30px;
+        top: -15px;
+        right: -15px;
+    }
+
+    .hook-image-container::after {
+        width: 60px;
+        height: 30px;
+        bottom: -15px;
+        left: -15px;
+    }
+
+    /* Ensure text flows properly on mobile */
+    #hook + p {
+        clear: both;
+        margin-top: 20px;
+    }
+    
+    /* Prevent paper rotation on mobile devices */
+    .aged-paper,
+    .aged-journal {
+      transform: rotate(0deg) !important;
+    }
+    .aged-paper:hover,
+    .aged-journal:hover {
+      transform: rotate(0deg) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hook-image-container {
+        margin: 20px auto;
+    }
+
+    /* Make tape smaller on very small screens */
+    .hook-image::before,
+    .hook-image::after,
+    .hook-image-container::before,
+    .hook-image-container::after {
+        width: 40px;
+        height: 20px;
+    }
+}
