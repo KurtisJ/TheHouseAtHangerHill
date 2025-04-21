@@ -1,6 +1,6 @@
-# Chaos For The Fly - Version 2
+# The House at Hanger Hill - Version 2
 
-This is Version 2 of the book showcase website for "Chaos For The Fly" by Ashleigh Mounser.
+This is Version 2 of the book showcase website for "The House at Hanger Hill" by Ashleigh Mounser.
 
 ## About This Version
 - **Style:** Modern, clean, and a touch of noir, using Montserrat and Roboto fonts.

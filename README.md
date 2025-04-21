@@ -1,6 +1,6 @@
-# Chaos For The Fly - Book Landing Page
+# The House at Hanger Hill - Book Landing Page
 
-A static website showcasing the psychological thriller "Chaos For The Fly" for potential publishers and agents.
+A static website showcasing the psychological thriller "The House at Hanger Hill" for potential publishers and agents.
 
 ## Structure
 
